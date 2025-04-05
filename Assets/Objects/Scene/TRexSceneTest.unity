@@ -876,17 +876,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1507977382 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5112157524459710938, guid: f451a5818270c8046a89d14acf398c82, type: 3}
-  m_PrefabInstance: {fileID: 8988821114950233801}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6599d3be4dd8994a8a10ca6ac140be8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1586279398
 GameObject:
   m_ObjectHideFlags: 0
@@ -1292,46 +1281,6 @@ PrefabInstance:
     - target: {fileID: 2135191168170686497, guid: f451a5818270c8046a89d14acf398c82, type: 3}
       propertyPath: m_Name
       value: TRex
-      objectReference: {fileID: 0}
-    - target: {fileID: 5112157524459710938, guid: f451a5818270c8046a89d14acf398c82, type: 3}
-      propertyPath: showDebug
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5112157524459710938, guid: f451a5818270c8046a89d14acf398c82, type: 3}
-      propertyPath: attackRange
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5112157524459710938, guid: f451a5818270c8046a89d14acf398c82, type: 3}
-      propertyPath: attackDamage
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6417202344187332366, guid: f451a5818270c8046a89d14acf398c82, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6417202344187332366, guid: f451a5818270c8046a89d14acf398c82, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6417202344187332366, guid: f451a5818270c8046a89d14acf398c82, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1507977382}
-    - target: {fileID: 6417202344187332366, guid: f451a5818270c8046a89d14acf398c82, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6417202344187332366, guid: f451a5818270c8046a89d14acf398c82, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: AttackInput
-      objectReference: {fileID: 0}
-    - target: {fileID: 6417202344187332366, guid: f451a5818270c8046a89d14acf398c82, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: TRexController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6417202344187332366, guid: f451a5818270c8046a89d14acf398c82, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
