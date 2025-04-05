@@ -106,6 +106,7 @@ MonoBehaviour:
   strength: 5
   jumpStrength: 1
   torqueStrength: 0.2
+  jumpCooldown: 3
 --- !u!70 &4061079208531534945
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
