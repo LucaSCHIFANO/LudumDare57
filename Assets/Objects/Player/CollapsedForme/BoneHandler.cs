@@ -5,21 +5,19 @@ public class BoneHandler : MonoBehaviour
 {
     private Rigidbody2D rb;
     private float direction = 0f;
-    [SerializeField] private float strength = 10f;
-    [SerializeField] private float jumpStrength = 1;
-    [SerializeField] private float torqueStrength = 1;
+    [SerializeField] private CollapsedValuesScriptable collapsedValues;
     private float jumpTime = 0;
-    [SerializeField] private float jumpCooldown = 3;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
+
     private void FixedUpdate()
     {
         if (Mathf.Abs(direction) > .2f){
-            rb.AddForceX(direction * strength);
-            rb.AddTorque(direction * torqueStrength * -1);
+            rb.AddForceX(direction * collapsedValues.strength);
+            rb.AddTorque(direction * collapsedValues.torqueStrength * -1);
         }
     }
 
@@ -30,9 +28,9 @@ public class BoneHandler : MonoBehaviour
     
     public void JumpInput(InputAction.CallbackContext context)
     {
-        if (context.performed && this.isActiveAndEnabled && (Time.fixedTime - jumpTime) >= jumpCooldown)
+        if (context.performed && this.isActiveAndEnabled && (Time.fixedTime - jumpTime) >= collapsedValues.jumpCooldown)
         {
-            rb.AddForceY(jumpStrength, ForceMode2D.Impulse);
+            rb.AddForceY(collapsedValues.jumpStrength, ForceMode2D.Impulse);
             jumpTime = Time.fixedTime;
         }
     }

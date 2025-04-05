@@ -103,10 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b3b488372d460544a2a96bd0d7e1803, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strength: 5
-  jumpStrength: 1
-  torqueStrength: 0.2
-  jumpCooldown: 3
+  collapsedValues: {fileID: 11400000, guid: d562ec6430953e94cbf9882d9a6f4c7c, type: 2}
 --- !u!70 &4061079208531534945
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -156,8 +153,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1.5
-  m_LinearDamping: 1
+  m_Mass: 1
+  m_LinearDamping: 0.4
   m_AngularDamping: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: b104a497e32b3ac42bf7fe7bd4dc8639, type: 2}
@@ -183,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 02a80011a599f9845b9c1c2685ba85cb, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: 1972fff36741a6c4fb922614e31198c6, type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -196,6 +193,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4ca8fac4-7645-422f-8a9f-6eae1cc6219a
+    m_ActionName: 'TRex/Movement[/Keyboard/a,/Keyboard/d,/Keyboard/leftArrow,/Keyboard/rightArrow,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 25954969-5fa9-408e-866a-b2cc8321bf89
+    m_ActionName: 'TRex/Jump[/Keyboard/space,/XInputControllerWindows/buttonSouth]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bc905cb2-5da2-4ef8-878d-a0cceac11fc7
+    m_ActionName: 'TRex/Attack[/Keyboard/e,/XInputControllerWindows/buttonWest]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d984d935-0c39-4916-9f7a-06847e6037da
+    m_ActionName: 'TRex/Deconstruct[/Keyboard/downArrow,/XInputControllerWindows/dpad/down,/Keyboard/s]'
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8803115403826917606}
@@ -210,8 +223,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 808044fe-5a75-40df-ba3f-3cf8b88dc466
-    m_ActionName: 'CollapasedMap/Movement[/Keyboard/a,/Keyboard/d]'
+    m_ActionId: 562a5135-60eb-433e-929d-199342adca96
+    m_ActionName: 'Collapsed/Movement[/Keyboard/a,/Keyboard/d,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right,/Keyboard/leftArrow,/Keyboard/rightArrow]'
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8803115403826917606}
@@ -226,10 +239,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: c28f8f58-dab4-480c-9b00-8bfe8c587e96
-    m_ActionName: 'CollapasedMap/Jump[/Keyboard/space,/XInputControllerWindows/buttonSouth]'
+    m_ActionId: fd02bfa6-519e-41b1-bce8-5db1e32099dc
+    m_ActionName: 'Collapsed/Jump[/Keyboard/space,/XInputControllerWindows/buttonSouth]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d9896b99-0a6f-417c-9d47-1627e917d36b
+    m_ActionName: 'Collapsed/TRex[/XInputControllerWindows/dpad/up]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: CollapasedMap
+  m_DefaultActionMap: Collapsed
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

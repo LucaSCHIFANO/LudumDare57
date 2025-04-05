@@ -6,7 +6,7 @@ public class TRexController : MonoBehaviour
 {
     [Header("Components")]
     private Rigidbody2D rb;
-    private BoxCollider2D bc;
+    [SerializeField] private BoxCollider2D bc;
     [SerializeField] GameObject rotatingPart;
 
     [Header("Movements")]
@@ -37,7 +37,6 @@ public class TRexController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        bc = GetComponent<BoxCollider2D>();
     }
 
     void FixedUpdate()

@@ -288,6 +288,28 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "",
+                    "id": "37e19782-d8b8-4ccf-8bf9-ead3836f7c7d",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TRex",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d525d82f-f27a-4d3b-9dc9-a8e856227776",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TRex",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "Keyboard",
                     "id": "e380d1b3-7119-40ed-975f-0a7108132fe4",
                     "path": "1DAxis(whichSideWins=1)",
