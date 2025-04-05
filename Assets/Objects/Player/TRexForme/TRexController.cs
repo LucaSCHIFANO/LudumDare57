@@ -7,6 +7,7 @@ public class TRexController : MonoBehaviour
     [Header("Components")]
     private Rigidbody2D rb;
     private BoxCollider2D bc;
+    [SerializeField] GameObject rotatingPart;
 
     [Header("Movements")]
     [SerializeField] private float speed;
@@ -19,11 +20,19 @@ public class TRexController : MonoBehaviour
     [SerializeField] private float jumpDuration;
     private float currentJumpDuration;
 
-    [SerializeField] private float jumpGravity;
+    [Space, SerializeField] private float jumpGravity;
     [SerializeField] private float fallGravity;
 
-    [SerializeField] float extraHeightBelow;
+    [Space, SerializeField] float extraHeightBelow;
     [SerializeField] private LayerMask ground;
+
+    [Header("Attack")]
+    [SerializeField] private Transform attackPosition;
+    [SerializeField] private float attackDamage;
+    [SerializeField] private float attackRange;
+
+    [Header("Debug")]
+    [SerializeField] private bool showDebug;
 
     private void Awake()
     {
@@ -52,6 +61,9 @@ public class TRexController : MonoBehaviour
     {
         float trueMovement = currentJoystickPosition == 0 ? 0 : Mathf.Sign(currentJoystickPosition);
         rb.linearVelocity = new Vector2(trueMovement * speed, rb.linearVelocityY);
+
+        if(trueMovement < 0) rotatingPart.transform.localScale = new Vector2(-1, 1);
+        else if(trueMovement > 0) rotatingPart.transform.localScale = new Vector2(1, 1);
     }
 
     private void Jump()
@@ -66,6 +78,17 @@ public class TRexController : MonoBehaviour
     private void StopJump()
     {   isJumping = false;
         rb.gravityScale = fallGravity;
+    }
+
+    private void Attack()
+    {
+        RaycastHit2D[] objects = Physics2D.CircleCastAll(attackPosition.position, attackRange, Vector2.right, attackRange);
+        
+        foreach (RaycastHit2D obj in objects)
+        {
+            if (obj.collider.GetComponent<IDestroyable>() != null)
+                obj.collider.GetComponent<IDestroyable>().TakeDamage(attackDamage);
+        }
     }
 
     private bool IsGrounded()
@@ -93,5 +116,16 @@ public class TRexController : MonoBehaviour
         if(context.performed && IsGrounded()) Jump();
 
         if(context.canceled) StopJump();
+    }
+
+    public void AttackInput(InputAction.CallbackContext context)
+    {
+        if (context.performed) Attack();
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (!showDebug) return;
+        Gizmos.DrawSphere(attackPosition.position, attackRange);
     }
 }
