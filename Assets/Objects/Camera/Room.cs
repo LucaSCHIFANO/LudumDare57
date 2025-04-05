@@ -97,6 +97,7 @@ public class Transition
     public enum Direction
     {
         Left,
-        Right
+        Right,
+        NONE
     }
 }

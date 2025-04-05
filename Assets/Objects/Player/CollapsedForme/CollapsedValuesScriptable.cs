@@ -4,6 +4,7 @@ using UnityEngine;
 public class CollapsedValuesScriptable : ScriptableObject
 {
     public float strength = 5f;
+    public float transitionStrength = 10f;
     public float jumpStrength = 1f;
     public float torqueStrength = .2f;
     public float jumpCooldown = 1.5f;

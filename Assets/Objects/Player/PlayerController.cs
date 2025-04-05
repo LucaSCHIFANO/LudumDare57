@@ -6,13 +6,15 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private CollapsedManager collapsedManager;
     private BoneHandler[] bones;
+    private TRexController tRex;
     [SerializeField] Transform bonesParent;
     Rigidbody2D rb;
+    private State state = State.CanMove;
 
     public UnityEvent SwitchToTRexForme;
     public UnityEvent SwitchToCollapsedForme;
 
-    enum State
+    public enum State
     {
         CanMove,
         CannotMove
@@ -21,12 +23,15 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         bones = FindObjectsByType<BoneHandler>(FindObjectsSortMode.None);
+        tRex = FindFirstObjectByType<TRexController>();
         rb = GetComponentInChildren<Rigidbody2D>();
         Construct();
     }
 
     public void ToRexFormeInput(InputAction.CallbackContext context)
     {
+        if (state != PlayerController.State.CanMove) return;
+
         if (context.performed)
         {
             if (collapsedManager.numberOfActiveBones < bones.Length)
@@ -38,6 +43,8 @@ public class PlayerController : MonoBehaviour
     
     public void ToCollapsedFormeInput(InputAction.CallbackContext context)
     {
+        if (state != PlayerController.State.CanMove) return;
+
         if (context.performed)
         {
             Collapse();
@@ -69,5 +76,18 @@ public class PlayerController : MonoBehaviour
         bonesParent.SetParent(transform.GetChild(0));
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
+    }
+
+    public void ChangeState(State newState, Transition.Direction dir)
+    {
+        state = newState;
+        tRex.ChangeState(newState);
+        tRex.Move(dir);
+
+        foreach (var bone in bones)
+        {
+            bone.ChangeState(newState);
+            bone.Move(dir);
+        }
     }
 }

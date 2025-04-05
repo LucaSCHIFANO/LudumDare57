@@ -10,6 +10,7 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private Vector3 offset;
 
     [SerializeField] private float speed;
+    [SerializeField] private float transitionSpeed;
     private float currentSpeed;
 
 
@@ -61,7 +62,7 @@ public class CameraMovement : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, hiddenTarget + offset, currentSpeed * Time.deltaTime);
     }
 
-    public void Transition(Transition transition)
+    public void CamTransition(Transition transition)
     {
         if(transition.nextRoom == null)
         {
@@ -72,12 +73,18 @@ public class CameraMovement : MonoBehaviour
         currentRoom.ActiveRoom(false);
         currentRoom = transition.nextRoom;
 
-        StartCoroutine(WaitToActivateRoom());
+        StartCoroutine(WaitToActivateRoom(transition.direction));
     }
 
-    public IEnumerator WaitToActivateRoom()
+    public IEnumerator WaitToActivateRoom(Transition.Direction dir)
     {
+        target.ChangeState(PlayerController.State.CannotMove, dir);
+        currentSpeed = transitionSpeed;
+
         yield return new WaitForSeconds(timeToWait);
+
         currentRoom.ActiveRoom(true);
+        target.ChangeState(PlayerController.State.CanMove, Transition.Direction.NONE);
+        currentSpeed = speed;
     }
 }

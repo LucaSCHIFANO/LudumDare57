@@ -25,8 +25,7 @@ public class ColliderTransition : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            Debug.Log(transform.parent.gameObject.name);
-            CameraMovement.Instance.Transition(transition);
+            CameraMovement.Instance.CamTransition(transition);
         }
     }
 }

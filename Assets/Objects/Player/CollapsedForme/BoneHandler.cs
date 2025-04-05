@@ -8,6 +8,7 @@ public class BoneHandler : MonoBehaviour
     [SerializeField] private CollapsedValuesScriptable collapsedValues;
     private float jumpTime = 0;
     [SerializeField] private LayerMask ground;
+    private PlayerController.State state = PlayerController.State.CanMove;
 
     private void Start()
     {
@@ -47,6 +48,31 @@ public class BoneHandler : MonoBehaviour
         {
             rb.AddForceY(collapsedValues.jumpStrength, ForceMode2D.Impulse);
             jumpTime = Time.fixedTime;
+        }
+    }
+
+    public void ChangeState(PlayerController.State newState)
+    {
+        state = newState;
+    }
+
+    public void Move(Transition.Direction dir)
+    {
+        switch (dir)
+        {
+            case Transition.Direction.Left:
+                direction = -1;
+                rb.AddForceX(direction * collapsedValues.transitionStrength);
+                break;
+
+            case Transition.Direction.Right:
+                direction = 1;
+                rb.AddForceX(direction * collapsedValues.transitionStrength);
+                break;
+
+            default:
+                direction = 0;
+                break;
         }
     }
 }
