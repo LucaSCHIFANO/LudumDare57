@@ -1,12 +1,17 @@
+using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private CollapsedManager collapsedManager;
     private BoneHandler[] bones;
-    [SerializeField] Transform bonesParent;
+    [SerializeField] private BoneHandler headBone;
+    [SerializeField] private float playerHeight = 1;
+    [SerializeField] LayerMask ground;
     Rigidbody2D rb;
 
     public UnityEvent SwitchToTRexForme;
@@ -15,8 +20,13 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         bones = FindObjectsByType<BoneHandler>(FindObjectsSortMode.None);
+        foreach(var bone in bones)
+        {
+            if (bone.gameObject == headBone.gameObject)
+                continue;
+            bone.gameObject.SetActive(false);
+        }
         rb = GetComponentInChildren<Rigidbody2D>();
-        Construct();
     }
 
     public void ToRexFormeInput(InputAction.CallbackContext context)
@@ -42,26 +52,52 @@ public class PlayerController : MonoBehaviour
     {
         foreach (var bone in bones)
         {
-            if (bone.gameObject == transform.GetChild(0).gameObject)
+            if (bone.gameObject == headBone.gameObject)
                 continue;
             bone.gameObject.SetActive(value);
         }
+        collapsedManager.gameObject.SetActive(value);
+
     }
 
     public void Collapse()
     {
-        bonesParent.SetParent(transform);
         SwitchToCollapsedForme.Invoke();
+        foreach (var bone in bones)
+        {
+            bone.ResetBone();
+        }
         SetBonesActive(true);
         rb.constraints = RigidbodyConstraints2D.None;
     }
 
     public void Construct()
-    {
-        SwitchToTRexForme.Invoke();
-        SetBonesActive(false);
-        bonesParent.SetParent(transform.GetChild(0));
-        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+    {        
+        StartCoroutine(ConstructAnim());
+        
+        IEnumerator ConstructAnim()
+        {
+            headBone.SimulateRigidbody(false);
+            var hit = Physics2D.Raycast(headBone.transform.position, Vector2.down, playerHeight, ground);
+            if (hit.collider != null)
+            {
+                headBone.transform.DOMoveY(hit.point.y + playerHeight, .5f);
+            }
+            headBone.transform.DORotate(Vector3.zero, 1f);
+            yield return new WaitForSeconds(.5f);
 
+            foreach (var bone in bones)
+            {
+                if (bone.gameObject == headBone.gameObject)
+                    continue;
+                bone.MoveToStartPosition();
+                yield return new WaitForSeconds(.1f);
+            }
+            SetBonesActive(false);
+
+            SwitchToTRexForme.Invoke();
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            headBone.SimulateRigidbody(true);
+        }
     }
 }

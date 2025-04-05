@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,10 +9,12 @@ public class BoneHandler : MonoBehaviour
     [SerializeField] private CollapsedValuesScriptable collapsedValues;
     private float jumpTime = 0;
     [SerializeField] private LayerMask ground;
+    [SerializeField] private Transform referenceTransform;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        ResetBone();
     }
 
     private void FixedUpdate()
@@ -48,5 +51,24 @@ public class BoneHandler : MonoBehaviour
             rb.AddForceY(collapsedValues.jumpStrength, ForceMode2D.Impulse);
             jumpTime = Time.fixedTime;
         }
+    }
+
+    public void MoveToStartPosition()
+    {
+        rb.simulated = false;
+        transform.DOMove(referenceTransform.position, 1);
+        transform.DORotate(referenceTransform.eulerAngles, 1);
+    }
+
+    public void ResetBone()
+    {
+        rb.simulated = true;
+        transform.position = referenceTransform.position;
+        transform.rotation = referenceTransform.rotation;
+    }
+
+    public void SimulateRigidbody(bool value)
+    {
+        rb.simulated = value;
     }
 }
