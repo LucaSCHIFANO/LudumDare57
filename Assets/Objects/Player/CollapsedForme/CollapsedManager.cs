@@ -4,13 +4,7 @@ using UnityEngine.InputSystem;
 public class CollapsedManager : MonoBehaviour
 {
     [SerializeField] private Collider2D triggerArea;
-    int maxBones = 0;
-
-    private void Start()
-    {
-        var bones = FindObjectsByType<BoneHandler>(FindObjectsSortMode.None);
-        maxBones = bones.Length - 1; //minus self
-    }
+    public int numberOfActiveBones = 1;
 
     private void OnEnable()
     {
@@ -22,6 +16,7 @@ public class CollapsedManager : MonoBehaviour
         if (collision.CompareTag("Bone"))
         {
             collision.GetComponent<BoneHandler>().enabled = true;
+            numberOfActiveBones++;
         }
     }
 
@@ -30,6 +25,7 @@ public class CollapsedManager : MonoBehaviour
         if (collision.CompareTag("Bone"))
         {
             collision.GetComponent<BoneHandler>().enabled = false;
+            numberOfActiveBones--;
         }
     }
 }
