@@ -9,13 +9,24 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private CollapsedManager collapsedManager;
     private BoneHandler[] bones;
+    private TRexController tRex;
+    [SerializeField] Transform bonesParent;
     [SerializeField] private BoneHandler headBone;
     [SerializeField] private float playerHeight = 1;
     [SerializeField] LayerMask ground;
     Rigidbody2D rb;
+    private State state = State.CanMove;
 
     public UnityEvent SwitchToTRexForme;
     public UnityEvent SwitchToCollapsedForme;
+
+    public TRexController TRex { get => tRex; }
+
+    public enum State
+    {
+        CanMove,
+        CannotMove
+    }
 
     private void Start()
     {
@@ -26,11 +37,14 @@ public class PlayerController : MonoBehaviour
                 continue;
             bone.gameObject.SetActive(false);
         }
+        tRex = FindFirstObjectByType<TRexController>();
         rb = GetComponentInChildren<Rigidbody2D>();
     }
 
     public void ToRexFormeInput(InputAction.CallbackContext context)
     {
+        if (state != PlayerController.State.CanMove) return;
+
         if (context.performed)
         {
             if (collapsedManager.numberOfActiveBones < bones.Length)
@@ -42,9 +56,21 @@ public class PlayerController : MonoBehaviour
     
     public void ToCollapsedFormeInput(InputAction.CallbackContext context)
     {
+        if (state != PlayerController.State.CanMove) return;
+
         if (context.performed)
         {
             Collapse();
+        }
+    }
+
+    public void RestartInput(InputAction.CallbackContext context)
+    {
+        if (state != PlayerController.State.CanMove) return;
+
+        if (context.performed)
+        {
+            CameraMovement.Instance.Restart();
         }
     }
 
@@ -98,6 +124,18 @@ public class PlayerController : MonoBehaviour
             SwitchToTRexForme.Invoke();
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             headBone.SimulateRigidbody(true);
+        }
+
+    public void ChangeState(State newState, Transition.Direction dir)
+    {
+        state = newState;
+        tRex.ChangeState(newState);
+        tRex.Move(dir);
+
+        foreach (var bone in bones)
+        {
+            bone.ChangeState(newState);
+            bone.Move(dir);
         }
     }
 }

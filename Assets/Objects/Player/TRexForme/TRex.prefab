@@ -208,17 +208,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6599d3be4dd8994a8a10ca6ac140be8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bc: {fileID: 0}
   rotatingPart: {fileID: 8419117849841617270}
   speed: 10
   jumpForce: 10
   jumpDuration: 1
   jumpGravity: 1
   fallGravity: 3
-  extraHeightBelow: 1
+  extraHeightBelow: 0.1
   ground:
     serializedVersion: 2
     m_Bits: 64
   attackPosition: {fileID: 3244520432990548944}
+  attackDamage: 5
+  attackRange: 0.8
+  showDebug: 1
 --- !u!114 &6417202344187332366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,7 +281,19 @@ MonoBehaviour:
     m_ActionId: 25954969-5fa9-408e-866a-b2cc8321bf89
     m_ActionName: 'TRex/Jump[/Keyboard/space,/XInputControllerWindows/buttonSouth]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5112157524459710938}
+        m_TargetAssemblyTypeName: TRexController, Assembly-CSharp
+        m_MethodName: AttackInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: bc905cb2-5da2-4ef8-878d-a0cceac11fc7
     m_ActionName: 'TRex/Attack[/Keyboard/e,/XInputControllerWindows/buttonWest]'
   - m_PersistentCalls:

@@ -10,6 +10,7 @@ public class BoneHandler : MonoBehaviour
     private float jumpTime = 0;
     [SerializeField] private LayerMask ground;
     [SerializeField] private Transform referenceTransform;
+    private PlayerController.State state = PlayerController.State.CanMove;
 
     private void Start()
     {
@@ -70,5 +71,30 @@ public class BoneHandler : MonoBehaviour
     public void SimulateRigidbody(bool value)
     {
         rb.simulated = value;
+    }
+
+    public void ChangeState(PlayerController.State newState)
+    {
+        state = newState;
+    }
+
+    public void Move(Transition.Direction dir)
+    {
+        switch (dir)
+        {
+            case Transition.Direction.Left:
+                direction = -1;
+                rb.AddForceX(direction * collapsedValues.transitionStrength);
+                break;
+
+            case Transition.Direction.Right:
+                direction = 1;
+                rb.AddForceX(direction * collapsedValues.transitionStrength);
+                break;
+
+            default:
+                direction = 0;
+                break;
+        }
     }
 }

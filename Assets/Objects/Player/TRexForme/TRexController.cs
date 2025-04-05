@@ -1,3 +1,4 @@
+using System;
 using UnityEditor.Toolbars;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,9 +9,12 @@ public class TRexController : MonoBehaviour
     private Rigidbody2D rb;
     [SerializeField] private BoxCollider2D bc;
     [SerializeField] GameObject rotatingPart;
+    private PlayerController.State state = PlayerController.State.CanMove;
 
     [Header("Movements")]
     [SerializeField] private float speed;
+    [SerializeField] private float transitionSpeed;
+    private float currentSpeed;
     private float currentJoystickPosition;
 
     [Header("Jump")]
@@ -37,6 +41,7 @@ public class TRexController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        currentSpeed = speed;
     }
 
     void FixedUpdate()
@@ -59,7 +64,7 @@ public class TRexController : MonoBehaviour
     private void Movement()
     {
         float trueMovement = currentJoystickPosition == 0 ? 0 : Mathf.Sign(currentJoystickPosition);
-        rb.linearVelocity = new Vector2(trueMovement * speed, rb.linearVelocityY);
+        rb.linearVelocity = new Vector2(trueMovement * currentSpeed, rb.linearVelocityY);
 
         if(trueMovement < 0) rotatingPart.transform.localScale = new Vector2(-1, 1);
         else if(trueMovement > 0) rotatingPart.transform.localScale = new Vector2(1, 1);
@@ -107,18 +112,24 @@ public class TRexController : MonoBehaviour
 
     public void MovementInput(InputAction.CallbackContext context)
     {
+        if (state != PlayerController.State.CanMove) return;
+
         currentJoystickPosition = context.ReadValue<float>();
     }
 
     public void JumpInput(InputAction.CallbackContext context)
     {
-        if(context.performed && IsGrounded()) Jump();
+        if (state != PlayerController.State.CanMove) return;
+
+        if (context.performed && IsGrounded()) Jump();
 
         if(context.canceled) StopJump();
     }
 
     public void AttackInput(InputAction.CallbackContext context)
     {
+        if (state != PlayerController.State.CanMove) return;
+
         if (context.performed) Attack();
     }
 
@@ -126,5 +137,38 @@ public class TRexController : MonoBehaviour
     {
         if (!showDebug) return;
         Gizmos.DrawSphere(attackPosition.position, attackRange);
+    }
+
+    public void ChangeState(PlayerController.State newState)
+    {
+       state = newState;
+    }
+
+    public void Move(Transition.Direction dir)
+    {
+        switch (dir)
+        { 
+            case Transition.Direction.Left:
+                currentJoystickPosition = -1;
+                currentSpeed = transitionSpeed;
+
+                break;
+
+            case Transition.Direction.Right:
+                currentJoystickPosition = 1;
+                currentSpeed = transitionSpeed;
+                break;
+
+            default:
+                currentJoystickPosition = 0;
+                currentSpeed = speed;
+                break;
+        }
+    }
+
+    public void Restart(Vector2 position)
+    {
+        transform.position = position;
+        rb.linearVelocity = Vector2.zero;
     }
 }
