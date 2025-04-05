@@ -98,9 +98,9 @@ public class PlayerController : MonoBehaviour
     }
 
     public void Construct()
-    {        
+    {
         StartCoroutine(ConstructAnim());
-        
+
         IEnumerator ConstructAnim()
         {
             headBone.SimulateRigidbody(false);
@@ -119,13 +119,14 @@ public class PlayerController : MonoBehaviour
                 bone.MoveToStartPosition();
                 yield return new WaitForSeconds(.1f);
             }
+                yield return new WaitForSeconds(.5f);
             SetBonesActive(false);
 
             SwitchToTRexForme.Invoke();
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             headBone.SimulateRigidbody(true);
         }
-
+    }
     public void ChangeState(State newState, Transition.Direction dir)
     {
         state = newState;
