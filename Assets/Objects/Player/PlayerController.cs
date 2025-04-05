@@ -12,6 +12,12 @@ public class PlayerController : MonoBehaviour
     public UnityEvent SwitchToTRexForme;
     public UnityEvent SwitchToCollapsedForme;
 
+    enum State
+    {
+        CanMove,
+        CannotMove
+    }
+
     private void Start()
     {
         bones = FindObjectsByType<BoneHandler>(FindObjectsSortMode.None);

@@ -4,7 +4,7 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     [Header("Camera")]
-    [SerializeField] private Transform target;
+    [SerializeField] private PlayerController target;
     private Vector3 hiddenTarget;
 
     [SerializeField] private Vector3 offset;
@@ -17,7 +17,7 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private Room startingRoom;
     private Room currentRoom;
     private Vector2 cameraSize;
-    private float timeToWait;
+    [SerializeField] private float timeToWait;
 
 
     private static CameraMovement _instance = null;
@@ -52,17 +52,23 @@ public class CameraMovement : MonoBehaviour
 
         if (currentRoom != null)
         {
-            var htXpos = Mathf.Clamp(target.position.x, currentRoom.WorldBottomLeftLimit.x + cameraSize.x / 2, currentRoom.WorldTopRightLimit.x - cameraSize.x / 2);
-            var htYpos = Mathf.Clamp(target.position.y, currentRoom.WorldBottomLeftLimit.y + cameraSize.y / 2, currentRoom.WorldTopRightLimit.y - cameraSize.y / 2);
+            var htXpos = Mathf.Clamp(target.transform.position.x, currentRoom.WorldBottomLeftLimit.x + cameraSize.x / 2, currentRoom.WorldTopRightLimit.x - cameraSize.x / 2);
+            var htYpos = Mathf.Clamp(target.transform.position.y, currentRoom.WorldBottomLeftLimit.y + cameraSize.y / 2, currentRoom.WorldTopRightLimit.y - cameraSize.y / 2);
             hiddenTarget = new Vector3(htXpos, htYpos, 0);
         }
-        else hiddenTarget = target.position;
+        else hiddenTarget = target.transform.position;
 
         transform.position = Vector3.MoveTowards(transform.position, hiddenTarget + offset, currentSpeed * Time.deltaTime);
     }
 
     public void Transition(Transition transition)
     {
+        if(transition.nextRoom == null)
+        {
+            Debug.Log("No next room");
+            return;
+        }
+
         currentRoom.ActiveRoom(false);
         currentRoom = transition.nextRoom;
 

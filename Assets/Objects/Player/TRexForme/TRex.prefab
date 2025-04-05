@@ -208,13 +208,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6599d3be4dd8994a8a10ca6ac140be8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bc: {fileID: 0}
   rotatingPart: {fileID: 8419117849841617270}
   speed: 10
   jumpForce: 10
   jumpDuration: 1
   jumpGravity: 1
   fallGravity: 3
-  extraHeightBelow: 1
+  extraHeightBelow: 0.1
   ground:
     serializedVersion: 2
     m_Bits: 64
