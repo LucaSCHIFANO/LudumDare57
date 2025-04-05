@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     public UnityEvent SwitchToTRexForme;
     public UnityEvent SwitchToCollapsedForme;
 
+    public TRexController TRex { get => tRex; }
+
     public enum State
     {
         CanMove,
@@ -48,6 +50,16 @@ public class PlayerController : MonoBehaviour
         if (context.performed)
         {
             Collapse();
+        }
+    }
+
+    public void RestartInput(InputAction.CallbackContext context)
+    {
+        if (state != PlayerController.State.CanMove) return;
+
+        if (context.performed)
+        {
+            CameraMovement.Instance.Restart();
         }
     }
 

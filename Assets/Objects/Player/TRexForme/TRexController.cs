@@ -165,4 +165,10 @@ public class TRexController : MonoBehaviour
                 break;
         }
     }
+
+    public void Restart(Vector2 position)
+    {
+        transform.position = position;
+        rb.linearVelocity = Vector2.zero;
+    }
 }

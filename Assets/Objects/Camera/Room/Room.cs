@@ -25,6 +25,10 @@ public class Room : MonoBehaviour
     [SerializeField] private Transition transition;
     [SerializeField] private float transitionSize;
 
+    [Header("CheckPoints")]
+    [SerializeField] private Transform checkPoint;
+    public Transform CheckPoint { get => checkPoint;}
+
     private void Awake()
     {
         centralPoint = new Vector3((bottomLeftPoint.position.x + topRightPoint.position.x) / 2,

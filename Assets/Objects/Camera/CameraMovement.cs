@@ -87,4 +87,11 @@ public class CameraMovement : MonoBehaviour
         target.ChangeState(PlayerController.State.CanMove, Transition.Direction.NONE);
         currentSpeed = speed;
     }
+
+
+    public void Restart()
+    {
+        target.TRex.Restart(currentRoom.CheckPoint.position);
+        target.ChangeState(PlayerController.State.CanMove, Transition.Direction.NONE);
+    }
 }
