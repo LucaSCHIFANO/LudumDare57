@@ -7,6 +7,7 @@ public class BoneHandler : MonoBehaviour
     private float direction = 0f;
     [SerializeField] private CollapsedValuesScriptable collapsedValues;
     private float jumpTime = 0;
+    [SerializeField] private LayerMask ground;
 
     private void Start()
     {
@@ -21,6 +22,20 @@ public class BoneHandler : MonoBehaviour
         }
     }
 
+    private bool IsGrounded()
+    {
+        RaycastHit2D raycastHit = Physics2D.BoxCast(transform.position,
+            new Vector3(2, 1, 0), 0f,
+            Vector2.down, 2, ground);
+
+        if (raycastHit.collider != null)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     public void MovementInput(InputAction.CallbackContext context)
     {
         direction = context.ReadValue<float>();
@@ -28,7 +43,7 @@ public class BoneHandler : MonoBehaviour
     
     public void JumpInput(InputAction.CallbackContext context)
     {
-        if (context.performed && this.isActiveAndEnabled && (Time.fixedTime - jumpTime) >= collapsedValues.jumpCooldown)
+        if (context.performed && this.isActiveAndEnabled && (Time.fixedTime - jumpTime) >= collapsedValues.jumpCooldown && IsGrounded())
         {
             rb.AddForceY(collapsedValues.jumpStrength, ForceMode2D.Impulse);
             jumpTime = Time.fixedTime;

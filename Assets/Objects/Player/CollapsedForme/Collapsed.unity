@@ -119,11 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &150848566 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1403081112642028615, guid: 37b13241def510e44bc185bc81135fcb, type: 3}
-  m_PrefabInstance: {fileID: 1619992745}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &998601923
 GameObject:
   m_ObjectHideFlags: 0
@@ -751,42 +746,6 @@ PrefabInstance:
     - target: {fileID: 4596910030133189497, guid: 37b13241def510e44bc185bc81135fcb, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7658856461168980514, guid: 37b13241def510e44bc185bc81135fcb, type: 3}
-      propertyPath: m_LinearDamping
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8387231501371980922, guid: 37b13241def510e44bc185bc81135fcb, type: 3}
-      propertyPath: SwitchToTRexForme.m_PersistentCalls.m_Calls.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8387231501371980922, guid: 37b13241def510e44bc185bc81135fcb, type: 3}
-      propertyPath: SwitchToTRexForme.m_PersistentCalls.m_Calls.Array.data[5].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8387231501371980922, guid: 37b13241def510e44bc185bc81135fcb, type: 3}
-      propertyPath: SwitchToTRexForme.m_PersistentCalls.m_Calls.Array.data[5].m_Target
-      value: 
-      objectReference: {fileID: 150848566}
-    - target: {fileID: 8387231501371980922, guid: 37b13241def510e44bc185bc81135fcb, type: 3}
-      propertyPath: SwitchToTRexForme.m_PersistentCalls.m_Calls.Array.data[5].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8387231501371980922, guid: 37b13241def510e44bc185bc81135fcb, type: 3}
-      propertyPath: SwitchToTRexForme.m_PersistentCalls.m_Calls.Array.data[5].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 8387231501371980922, guid: 37b13241def510e44bc185bc81135fcb, type: 3}
-      propertyPath: SwitchToTRexForme.m_PersistentCalls.m_Calls.Array.data[5].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 8387231501371980922, guid: 37b13241def510e44bc185bc81135fcb, type: 3}
-      propertyPath: SwitchToTRexForme.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_StringArgument
-      value: TRex
-      objectReference: {fileID: 0}
-    - target: {fileID: 8387231501371980922, guid: 37b13241def510e44bc185bc81135fcb, type: 3}
-      propertyPath: SwitchToTRexForme.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

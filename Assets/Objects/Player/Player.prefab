@@ -80,7 +80,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8b4c54998895f348b9783939a4d9e6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerArea: {fileID: 8634952651905336998}
   numberOfActiveBones: 1
 --- !u!212 &2197649350973750949
 SpriteRenderer:
@@ -860,6 +859,10 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 7246501287702122052, guid: f451a5818270c8046a89d14acf398c82, type: 3}
+      propertyPath: m_LinearDamping
+      value: 0.4
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1955822281422274257, guid: f451a5818270c8046a89d14acf398c82, type: 3}
     m_RemovedGameObjects: []
@@ -901,6 +904,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collapsedValues: {fileID: 11400000, guid: d562ec6430953e94cbf9882d9a6f4c7c, type: 2}
+  ground:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &5200267745795052988 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5112157524459710938, guid: f451a5818270c8046a89d14acf398c82, type: 3}
