@@ -104,6 +104,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collapsedValues: {fileID: 11400000, guid: d562ec6430953e94cbf9882d9a6f4c7c, type: 2}
+  ground:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!70 &4061079208531534945
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
