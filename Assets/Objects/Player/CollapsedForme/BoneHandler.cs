@@ -97,4 +97,13 @@ public class BoneHandler : MonoBehaviour
                 break;
         }
     }
+
+    public void TeleportToCheckpoint(Vector3 position)
+    {
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = 0;
+        SimulateRigidbody(false);
+        transform.position = position;
+        ResetBone();
+    }
 }

@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private CollapsedManager collapsedManager;
     private BoneHandler[] bones;
     private TRexController tRex;
-    [SerializeField] Transform bonesParent;
     [SerializeField] private BoneHandler headBone;
     [SerializeField] private float playerHeight = 1;
     [SerializeField] LayerMask ground;
@@ -71,6 +70,7 @@ public class PlayerController : MonoBehaviour
         if (context.performed)
         {
             CameraMovement.Instance.Restart();
+            ResetToCheckpoint(Vector3.zero); //replace with saved checkpoint position
         }
     }
 
@@ -137,6 +137,14 @@ public class PlayerController : MonoBehaviour
         {
             bone.ChangeState(newState);
             bone.Move(dir);
+        }
+    }
+
+    public void ResetToCheckpoint(Vector3 checkpointPosition)
+    {
+        foreach (var bone in bones)
+        {
+            bone.TeleportToCheckpoint(checkpointPosition);
         }
     }
 }
