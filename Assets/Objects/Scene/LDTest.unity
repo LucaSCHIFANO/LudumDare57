@@ -1738,42 +1738,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundManager
       objectReference: {fileID: 0}
-    - target: {fileID: 9035929341462751897, guid: 8741273cc386346419700eefa8a1ee48, type: 3}
-      propertyPath: soundTest
-      value: 
-      objectReference: {fileID: 11400000, guid: 0cc0a617300197c4cb8effa76e0737e5, type: 2}
-    - target: {fileID: 9035929341462751897, guid: 8741273cc386346419700eefa8a1ee48, type: 3}
-      propertyPath: maxAudioSource
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9035929341462751897, guid: 8741273cc386346419700eefa8a1ee48, type: 3}
-      propertyPath: audioSourcePrefab
-      value: 
-      objectReference: {fileID: 605654066191255630, guid: dd563bfd5971b814eab2ac008a93941e, type: 3}
-    - target: {fileID: 9035929341462751897, guid: 8741273cc386346419700eefa8a1ee48, type: 3}
-      propertyPath: initialAudioSource
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9035929341462751897, guid: 8741273cc386346419700eefa8a1ee48, type: 3}
-      propertyPath: mixerTypes.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9035929341462751897, guid: 8741273cc386346419700eefa8a1ee48, type: 3}
-      propertyPath: mixerTypes.Array.data[0].soundType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9035929341462751897, guid: 8741273cc386346419700eefa8a1ee48, type: 3}
-      propertyPath: mixerTypes.Array.data[1].soundType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9035929341462751897, guid: 8741273cc386346419700eefa8a1ee48, type: 3}
-      propertyPath: mixerTypes.Array.data[0].audioMixerGroup
-      value: 
-      objectReference: {fileID: 8990142911851181468, guid: b109a36332fbb3848bafec5f23982fd0, type: 2}
-    - target: {fileID: 9035929341462751897, guid: 8741273cc386346419700eefa8a1ee48, type: 3}
-      propertyPath: mixerTypes.Array.data[1].audioMixerGroup
-      value: 
-      objectReference: {fileID: 8705262482236266695, guid: b109a36332fbb3848bafec5f23982fd0, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
