@@ -211,18 +211,22 @@ MonoBehaviour:
   bc: {fileID: 0}
   rotatingPart: {fileID: 8419117849841617270}
   speed: 10
+  transitionSpeed: 0
   jumpForce: 10
   jumpDuration: 1
   jumpGravity: 1
   fallGravity: 3
-  extraHeightBelow: 0.1
+  extraHeightBelow: 0.2
   ground:
     serializedVersion: 2
     m_Bits: 64
+  jumpSound: {fileID: 0}
   attackPosition: {fileID: 3244520432990548944}
   attackDamage: 5
   attackRange: 0.8
+  attackSound: {fileID: 0}
   showDebug: 1
+  animator: {fileID: 0}
 --- !u!114 &6417202344187332366
 MonoBehaviour:
   m_ObjectHideFlags: 0

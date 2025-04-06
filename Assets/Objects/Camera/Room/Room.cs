@@ -31,6 +31,10 @@ public class Room : MonoBehaviour
     [Header("Obstacles")]
     [SerializeField] private List<GameObject> obstaclesList = new List<GameObject>();
      private List<Obstacle> trueObstaclesList = new List<Obstacle>();
+
+    [Header("ActiveItem")]
+    [SerializeField] private List<GameObject> activeItemList = new List<GameObject>();
+
     public Transform CheckPoint { get => checkPoint; }
 
     private void Awake()
@@ -40,7 +44,7 @@ public class Room : MonoBehaviour
             0);
         roomSize = new Vector2(topRightPoint.position.x - bottomLeftPoint.position.x,
             topRightPoint.position.y - bottomLeftPoint.position.y);
-
+        ActiveRoom(false);
     }
 
     private void Start()
@@ -61,6 +65,11 @@ public class Room : MonoBehaviour
         colliders.Clear();
 
         if (isActive) SetColliders();
+
+        foreach (var item in activeItemList)
+        {
+            item.SetActive(isActive);
+        }
     }
 
     private void SetColliders()
@@ -71,7 +80,6 @@ public class Room : MonoBehaviour
         var bot = Instantiate(colliderPrefab, new Vector3(centralPoint.x, bottomLeftPoint.position.y, 0), Quaternion.identity, transform);
         colliders.Add(bot);
         bot.Init(false, new Vector2(roomSize.x, colliderSize), null);
-
 
         var right = Instantiate(colliderPrefab, new Vector3(topRightPoint.position.x, centralPoint.y, 0), Quaternion.identity, transform);
         colliders.Add(right);
