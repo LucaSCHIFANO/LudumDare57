@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Rocks : MonoBehaviour, IDestroyable
@@ -9,6 +10,9 @@ public class Rocks : MonoBehaviour, IDestroyable
     private Material baseMaterial;
     private SpriteRenderer sr;
     [SerializeField] private Material blinkMaterial;
+
+    [SerializeField] private SOSound damageSound;
+    [SerializeField] private SOSound killSound;
 
     private void Awake()
     {
@@ -31,9 +35,14 @@ public class Rocks : MonoBehaviour, IDestroyable
         currentHP -= damageTaken;
         if (currentHP <= 0)
         {
+            SoundManager.Instance.Play(killSound);
             Destroyed();
         }
-        else StartCoroutine(BlinkingEffect());
+        else
+        {
+            SoundManager.Instance.Play(damageSound);
+            StartCoroutine(BlinkingEffect());
+        }
     }
     IEnumerator BlinkingEffect()
     {

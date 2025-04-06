@@ -102,3 +102,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 10
   blinkMaterial: {fileID: -876546973899608171, guid: 1a207e3bee00db44b940e6f362a8e148, type: 3}
+  damageSound: {fileID: 11400000, guid: 002882f66dcdfdf47ba601d315094581, type: 2}
+  killSound: {fileID: 11400000, guid: 980a4c97153b36541a93b67c6e99e7b1, type: 2}

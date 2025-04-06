@@ -30,10 +30,13 @@ public class TRexController : MonoBehaviour
     [Space, SerializeField] float extraHeightBelow;
     [SerializeField] private LayerMask ground;
 
+    [SerializeField] private SOSound jumpSound;
+
     [Header("Attack")]
     [SerializeField] private Transform attackPosition;
     [SerializeField] private float attackDamage;
     [SerializeField] private float attackRange;
+    [SerializeField] private SOSound attackSound;
 
     [Header("Debug")]
     [SerializeField] private bool showDebug;
@@ -47,6 +50,12 @@ public class TRexController : MonoBehaviour
     void FixedUpdate()
     {
         Movement();
+    }
+
+    public void PlaySound(SOSound sound)
+    {
+        if (sound == null) return;
+        SoundManager.Instance.Play(sound);
     }
 
     private void Update()
@@ -77,6 +86,8 @@ public class TRexController : MonoBehaviour
 
         rb.gravityScale = jumpGravity;
         rb.linearVelocity = new Vector2(rb.linearVelocityX, jumpForce);
+
+        PlaySound(jumpSound);
     }
 
     private void StopJump()
@@ -93,6 +104,7 @@ public class TRexController : MonoBehaviour
             if (obj.collider.GetComponent<IDestroyable>() != null)
                 obj.collider.GetComponent<IDestroyable>().TakeDamage(attackDamage);
         }
+        PlaySound(attackSound);
     }
 
     private bool IsGrounded()

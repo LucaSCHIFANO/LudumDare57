@@ -19,12 +19,21 @@ public class PlayerController : MonoBehaviour
     public UnityEvent SwitchToTRexForme;
     public UnityEvent SwitchToCollapsedForme;
 
+    [Header("Sound")]
+    [SerializeField] private SOSound deconstructSound;
+    [SerializeField] private SOSound reconstructSound;
     public TRexController TRex { get => tRex; }
 
     public enum State
     {
         CanMove,
         CannotMove
+    }
+
+    public void PlaySound(SOSound sound)
+    {
+        if (sound == null) return;
+        SoundManager.Instance.Play(sound);
     }
 
     private void Awake()
@@ -100,10 +109,13 @@ public class PlayerController : MonoBehaviour
         }
         SetBonesActive(true);
         rb.constraints = RigidbodyConstraints2D.None;
+        PlaySound(deconstructSound);
     }
 
     public void Construct()
     {
+        PlaySound(reconstructSound);
+
         StartCoroutine(ConstructAnim());
 
         IEnumerator ConstructAnim()
