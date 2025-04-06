@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private BoneHandler[] bones;
     private TRexController tRex;
     [SerializeField] private BoneHandler headBone;
+    [SerializeField] private Transform triangle;
     [SerializeField] private float playerHeight = 1;
     [SerializeField] LayerMask ground;
     Rigidbody2D rb;
@@ -60,12 +61,22 @@ public class PlayerController : MonoBehaviour
         if (context.performed)
         {
             if (collapsedManager.numberOfActiveBones < bones.Length)
-                return;
+                return;          
+            
+            var wall = Physics2D.RaycastAll(triangle.transform.position, Vector2.up, 1f, ground);
+            
+            if (wall.Length > 0) return;
 
             Construct();
         }
     }
-    
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(triangle.transform.position, Vector2.up * 1f);
+    }
+
     public void ToCollapsedFormeInput(InputAction.CallbackContext context)
     {
         if (state != PlayerController.State.CanMove) return;
