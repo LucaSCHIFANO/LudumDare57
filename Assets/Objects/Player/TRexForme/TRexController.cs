@@ -20,6 +20,7 @@ public class TRexController : MonoBehaviour
     [Header("Jump")]
     [SerializeField] private float jumpForce;
     private bool isJumping;
+    private bool isInAir;
 
     [SerializeField] private float jumpDuration;
     private float currentJumpDuration;
@@ -38,10 +39,14 @@ public class TRexController : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private bool showDebug;
 
+    [Header("Visuals")]
+    [SerializeField] private Animator animator;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         currentSpeed = speed;
+        animator = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -59,15 +64,32 @@ public class TRexController : MonoBehaviour
             }
             else currentJumpDuration += Time.deltaTime;
         }
+
+        if (isInAir && IsGrounded())
+        {
+            animator.SetBool("IsInAir", false);
+            isInAir = false;
+        }else if (!isInAir && !IsGrounded())
+        {
+            animator.SetBool("IsInAir", true);
+            isInAir = true;
+
+        }
     }
 
     private void Movement()
     {
         float trueMovement = currentJoystickPosition == 0 ? 0 : Mathf.Sign(currentJoystickPosition);
         rb.linearVelocity = new Vector2(trueMovement * currentSpeed, rb.linearVelocityY);
+        if (Mathf.Abs(trueMovement) > .2f)
+            animator.SetBool("IsWalking", true);
+        else 
+            animator.SetBool("IsWalking", false);
 
-        if(trueMovement < 0) rotatingPart.transform.localScale = new Vector2(-1, 1);
-        else if(trueMovement > 0) rotatingPart.transform.localScale = new Vector2(1, 1);
+
+        if (trueMovement < 0)
+            rotatingPart.transform.localScale = new Vector2(-1, 1);
+        else if (trueMovement > 0) rotatingPart.transform.localScale = new Vector2(1, 1);
     }
 
     private void Jump()
@@ -77,6 +99,8 @@ public class TRexController : MonoBehaviour
 
         rb.gravityScale = jumpGravity;
         rb.linearVelocity = new Vector2(rb.linearVelocityX, jumpForce);
+        animator.SetTrigger("Jump");
+
     }
 
     private void StopJump()
