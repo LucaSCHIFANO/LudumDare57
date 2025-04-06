@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,12 +13,19 @@ public class BoneHandler : MonoBehaviour
     [SerializeField] private Transform referenceTransform;
     private PlayerController.State state = PlayerController.State.CanMove;
     private CollapsedManager collapsedManager;
+    [SerializeField] private SOSound jumpSound;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         collapsedManager = FindFirstObjectByType<CollapsedManager>();
         ResetBone();
+    }
+
+    public void PlaySound(SOSound sound)
+    {
+        if (sound == null) return;
+        SoundManager.Instance.Play(sound);
     }
 
     private void FixedUpdate()
@@ -62,6 +70,7 @@ public class BoneHandler : MonoBehaviour
         {
             rb.AddForceY(collapsedValues.jumpStrength, ForceMode2D.Impulse);
             jumpTime = Time.fixedTime;
+            PlaySound(jumpSound);
         }
     }
 

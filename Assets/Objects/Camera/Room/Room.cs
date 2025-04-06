@@ -27,7 +27,11 @@ public class Room : MonoBehaviour
 
     [Header("CheckPoints")]
     [SerializeField] private Transform checkPoint;
-    public Transform CheckPoint { get => checkPoint;}
+
+    [Header("Obstacles")]
+    [SerializeField] private List<GameObject> obstaclesList = new List<GameObject>();
+     private List<Obstacle> trueObstaclesList = new List<Obstacle>();
+    public Transform CheckPoint { get => checkPoint; }
 
     private void Awake()
     {
@@ -36,7 +40,16 @@ public class Room : MonoBehaviour
             0);
         roomSize = new Vector2(topRightPoint.position.x - bottomLeftPoint.position.x,
             topRightPoint.position.y - bottomLeftPoint.position.y);
-    
+
+    }
+
+    private void Start()
+    {
+        foreach (var obstacle in obstaclesList)
+        {
+            var obt = new Obstacle(obstacle, obstacle.transform.position);
+            trueObstaclesList.Add(obt);
+        }
     }
 
     public void ActiveRoom(bool isActive)
@@ -89,7 +102,14 @@ public class Room : MonoBehaviour
         Gizmos.DrawLine(TL, BL);
     }
 
-
+    public void Restart()
+    {
+        foreach (var obstacle in trueObstaclesList)
+        {
+            obstacle.go.SetActive(true);
+            obstacle.go.transform.position = obstacle.position;
+        }
+    }
 }
 
 [Serializable]
@@ -103,5 +123,18 @@ public class Transition
         Left,
         Right,
         NONE
+    }
+}
+
+[Serializable]
+public class Obstacle
+{
+    public GameObject go;
+    public Vector3 position;
+
+    public Obstacle(GameObject _go, Vector3 _position)
+    {
+        go= _go;
+        position = _position;
     }
 }
