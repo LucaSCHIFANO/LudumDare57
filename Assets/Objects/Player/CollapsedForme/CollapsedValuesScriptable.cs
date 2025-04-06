@@ -8,4 +8,5 @@ public class CollapsedValuesScriptable : ScriptableObject
     public float jumpStrength = 1f;
     public float torqueStrength = .2f;
     public float jumpCooldown = 1.5f;
+    public float attractionMultiplier = 1.5f;
 }

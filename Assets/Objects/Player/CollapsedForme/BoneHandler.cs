@@ -11,10 +11,12 @@ public class BoneHandler : MonoBehaviour
     [SerializeField] private LayerMask ground;
     [SerializeField] private Transform referenceTransform;
     private PlayerController.State state = PlayerController.State.CanMove;
+    private CollapsedManager collapsedManager;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        collapsedManager = FindFirstObjectByType<CollapsedManager>();
         ResetBone();
     }
 
@@ -27,6 +29,9 @@ public class BoneHandler : MonoBehaviour
         else if (Mathf.Abs(direction) > .2f){
             rb.AddForceX(direction * collapsedValues.strength);
             rb.AddTorque(direction * collapsedValues.torqueStrength * -1);
+            Vector3 attraction = collapsedManager.transform.position - transform.position;
+            rb.AddForce(attraction * collapsedValues.attractionMultiplier);
+            Debug.DrawLine(transform.position, transform.position + attraction);
         }
     }
 
