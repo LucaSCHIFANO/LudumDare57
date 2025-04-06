@@ -33,6 +33,7 @@ public class BoneHandler : MonoBehaviour
         if (state != PlayerController.State.CanMove)
         {
             rb.AddForceX(direction * collapsedValues.transitionStrength);
+            rb.AddTorque(direction * collapsedValues.torqueStrength * -1);
         }
         else if (Mathf.Abs(direction) > .2f){
             rb.AddForceX(direction * collapsedValues.strength);
