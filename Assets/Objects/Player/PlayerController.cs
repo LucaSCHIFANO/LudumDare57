@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private BoneHandler[] bones;
     private TRexController tRex;
     [SerializeField] private BoneHandler headBone;
-    [SerializeField] private Transform triangle;
+    [SerializeField] private Transform headVisual;
     [SerializeField] private float playerHeight = 1;
     [SerializeField] LayerMask ground;
     Rigidbody2D rb;
@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
                 continue;
             bone.gameObject.SetActive(false);
         }
+        headVisual.gameObject.SetActive(false);
     }
 
     public void ToRexFormeInput(InputAction.CallbackContext context)
@@ -63,7 +64,7 @@ public class PlayerController : MonoBehaviour
             if (collapsedManager.numberOfActiveBones < bones.Length)
                 return;          
             
-            var wall = Physics2D.RaycastAll(triangle.transform.position, Vector2.up, 1f, ground);
+            var wall = Physics2D.RaycastAll(headVisual.transform.position, Vector2.up, 1f, ground);
             
             if (wall.Length > 0) return;
 
@@ -74,7 +75,7 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(triangle.transform.position, Vector2.up * 1f);
+        Gizmos.DrawRay(headVisual.transform.position, Vector2.up * 1f);
     }
 
     public void ToCollapsedFormeInput(InputAction.CallbackContext context)
@@ -107,7 +108,7 @@ public class PlayerController : MonoBehaviour
                 continue;
             bone.gameObject.SetActive(value);
         }
-        collapsedManager.gameObject.SetActive(value);
+        headVisual.gameObject.SetActive(value);
 
     }
 
