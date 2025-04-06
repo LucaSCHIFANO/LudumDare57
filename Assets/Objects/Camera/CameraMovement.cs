@@ -5,6 +5,7 @@ public class CameraMovement : MonoBehaviour
 {
     [Header("Camera")]
     [SerializeField] private PlayerController target;
+    [SerializeField] private Transform targetToFollow;
     private Vector3 hiddenTarget;
 
     [SerializeField] private Vector3 offset;
@@ -36,29 +37,27 @@ public class CameraMovement : MonoBehaviour
         float height = 2f * cam.orthographicSize;
         float width = height * cam.aspect;
         cameraSize = new Vector2(width, height);
-
         currentSpeed = speed;
-
     }
     private void Start()
     {
         currentRoom = startingRoom;
         currentRoom.ActiveRoom(true);
+        targetToFollow = target.TRex.transform;
     }
 
 
     private void FixedUpdate()
     {
-        if (target == null) return;
+        if (targetToFollow == null) return;
 
         if (currentRoom != null)
         {
-            var htXpos = Mathf.Clamp(target.transform.position.x, currentRoom.WorldBottomLeftLimit.x + cameraSize.x / 2, currentRoom.WorldTopRightLimit.x - cameraSize.x / 2);
-            var htYpos = Mathf.Clamp(target.transform.position.y, currentRoom.WorldBottomLeftLimit.y + cameraSize.y / 2, currentRoom.WorldTopRightLimit.y - cameraSize.y / 2);
+            var htXpos = Mathf.Clamp(targetToFollow.transform.position.x, currentRoom.WorldBottomLeftLimit.x + cameraSize.x / 2, currentRoom.WorldTopRightLimit.x - cameraSize.x / 2);
+            var htYpos = Mathf.Clamp(targetToFollow.transform.position.y, currentRoom.WorldBottomLeftLimit.y + cameraSize.y / 2, currentRoom.WorldTopRightLimit.y - cameraSize.y / 2);
             hiddenTarget = new Vector3(htXpos, htYpos, 0);
         }
-        else hiddenTarget = target.transform.position;
-
+        else hiddenTarget = targetToFollow.transform.position;
         transform.position = Vector3.MoveTowards(transform.position, hiddenTarget + offset, currentSpeed * Time.deltaTime);
     }
 

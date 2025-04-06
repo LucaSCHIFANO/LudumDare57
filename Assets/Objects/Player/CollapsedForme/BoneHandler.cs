@@ -20,7 +20,11 @@ public class BoneHandler : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Mathf.Abs(direction) > .2f){
+        if (state != PlayerController.State.CanMove)
+        {
+            rb.AddForceX(direction * collapsedValues.transitionStrength);
+        }
+        else if (Mathf.Abs(direction) > .2f){
             rb.AddForceX(direction * collapsedValues.strength);
             rb.AddTorque(direction * collapsedValues.torqueStrength * -1);
         }
@@ -42,11 +46,13 @@ public class BoneHandler : MonoBehaviour
 
     public void MovementInput(InputAction.CallbackContext context)
     {
+        if (state != PlayerController.State.CanMove) return;
         direction = context.ReadValue<float>();
     }
     
     public void JumpInput(InputAction.CallbackContext context)
     {
+        if (state != PlayerController.State.CanMove) return;
         if (context.performed && this.isActiveAndEnabled && (Time.fixedTime - jumpTime) >= collapsedValues.jumpCooldown && IsGrounded())
         {
             rb.AddForceY(collapsedValues.jumpStrength, ForceMode2D.Impulse);
@@ -84,12 +90,12 @@ public class BoneHandler : MonoBehaviour
         {
             case Transition.Direction.Left:
                 direction = -1;
-                rb.AddForceX(direction * collapsedValues.transitionStrength);
+                rb.linearVelocity = Vector2.zero;
                 break;
 
             case Transition.Direction.Right:
                 direction = 1;
-                rb.AddForceX(direction * collapsedValues.transitionStrength);
+                rb.linearVelocity = Vector2.zero;
                 break;
 
             default:

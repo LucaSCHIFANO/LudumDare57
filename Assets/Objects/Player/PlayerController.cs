@@ -27,6 +27,12 @@ public class PlayerController : MonoBehaviour
         CannotMove
     }
 
+    private void Awake()
+    {
+        rb = GetComponentInChildren<Rigidbody2D>();
+        tRex = FindFirstObjectByType<TRexController>();
+    }
+
     private void Start()
     {
         bones = FindObjectsByType<BoneHandler>(FindObjectsSortMode.None);
@@ -36,8 +42,6 @@ public class PlayerController : MonoBehaviour
                 continue;
             bone.gameObject.SetActive(false);
         }
-        tRex = FindFirstObjectByType<TRexController>();
-        rb = GetComponentInChildren<Rigidbody2D>();
     }
 
     public void ToRexFormeInput(InputAction.CallbackContext context)
@@ -130,6 +134,7 @@ public class PlayerController : MonoBehaviour
     public void ChangeState(State newState, Transition.Direction dir)
     {
         state = newState;
+
         tRex.ChangeState(newState);
         tRex.Move(dir);
 

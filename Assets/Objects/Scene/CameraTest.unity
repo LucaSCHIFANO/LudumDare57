@@ -726,6 +726,18 @@ PrefabInstance:
       value: 10.37
       objectReference: {fileID: 0}
     - target: {fileID: 5896983283519449983, guid: 7d1f3d62ae35dba43a5b45272a8f996b, type: 3}
+      propertyPath: gizmosColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5896983283519449983, guid: 7d1f3d62ae35dba43a5b45272a8f996b, type: 3}
+      propertyPath: gizmosColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5896983283519449983, guid: 7d1f3d62ae35dba43a5b45272a8f996b, type: 3}
+      propertyPath: gizmosColor.r
+      value: 0.21902657
+      objectReference: {fileID: 0}
+    - target: {fileID: 5896983283519449983, guid: 7d1f3d62ae35dba43a5b45272a8f996b, type: 3}
       propertyPath: transition.nextRoom
       value: 
       objectReference: {fileID: 1801952979}
