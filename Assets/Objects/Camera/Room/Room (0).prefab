@@ -55,8 +55,10 @@ MonoBehaviour:
   transition:
     nextRoom: {fileID: 0}
     direction: 1
-  transitionSize: 0.7
+  transitionSize: 0.5
   checkPoint: {fileID: 4982083496530737220}
+  obstaclesList: []
+  activeItemList: []
 --- !u!1 &2686162435718260571
 GameObject:
   m_ObjectHideFlags: 0
