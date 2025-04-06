@@ -69,8 +69,8 @@ public class PlayerController : MonoBehaviour
 
         if (context.performed)
         {
-            CameraMovement.Instance.Restart();
-            ResetToCheckpoint(Vector3.zero); //replace with saved checkpoint position
+            var checkpoint = CameraMovement.Instance.GetRestartPoint();
+            ResetToCheckpoint(checkpoint);
         }
     }
 
@@ -142,6 +142,10 @@ public class PlayerController : MonoBehaviour
 
     public void ResetToCheckpoint(Vector3 checkpointPosition)
     {
+        ChangeState(PlayerController.State.CanMove, Transition.Direction.NONE);
+
+        TRex.Restart(checkpointPosition);
+
         foreach (var bone in bones)
         {
             bone.TeleportToCheckpoint(checkpointPosition);

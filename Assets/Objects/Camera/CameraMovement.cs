@@ -89,9 +89,8 @@ public class CameraMovement : MonoBehaviour
     }
 
 
-    public void Restart()
+    public Vector3 GetRestartPoint()
     {
-        target.TRex.Restart(currentRoom.CheckPoint.position);
-        target.ChangeState(PlayerController.State.CanMove, Transition.Direction.NONE);
+        return currentRoom.CheckPoint.position;
     }
 }
