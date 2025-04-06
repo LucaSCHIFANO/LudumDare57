@@ -74,6 +74,7 @@ public class PlayerController : MonoBehaviour
         if (context.performed)
         {
             var checkpoint = CameraMovement.Instance.GetRestartPoint();
+            CameraMovement.Instance.Restart();
             ResetToCheckpoint(checkpoint);
         }
     }

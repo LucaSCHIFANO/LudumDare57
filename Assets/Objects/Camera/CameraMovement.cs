@@ -87,6 +87,13 @@ public class CameraMovement : MonoBehaviour
         currentSpeed = speed;
     }
 
+    public void Restart()
+    {
+        currentRoom.Restart();
+        var htXpos = Mathf.Clamp(currentRoom.CheckPoint.position.x, currentRoom.WorldBottomLeftLimit.x + cameraSize.x / 2, currentRoom.WorldTopRightLimit.x - cameraSize.x / 2);
+        var htYpos = Mathf.Clamp(currentRoom.CheckPoint.position.y, currentRoom.WorldBottomLeftLimit.y + cameraSize.y / 2, currentRoom.WorldTopRightLimit.y - cameraSize.y / 2);
+        transform.position = new Vector3(htXpos, htYpos, -10);
+    }
 
     public Vector3 GetRestartPoint()
     {
