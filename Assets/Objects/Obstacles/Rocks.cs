@@ -12,24 +12,28 @@ public class Rocks : MonoBehaviour, IDestroyable
 
     private void Awake()
     {
-        currentHP = maxHP;
         sr = GetComponent<SpriteRenderer>();
         baseMaterial = sr.material;
     }
 
+    private void OnEnable()
+    {
+        currentHP = maxHP;
+    }
+
     public void Destroyed()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     public void TakeDamage(float damageTaken)
     {
         currentHP -= damageTaken;
-        StartCoroutine(BlinkingEffect());
         if (currentHP <= 0)
         {
             Destroyed();
         }
+        else StartCoroutine(BlinkingEffect());
     }
     IEnumerator BlinkingEffect()
     {
