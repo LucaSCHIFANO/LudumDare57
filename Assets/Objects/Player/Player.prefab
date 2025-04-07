@@ -9273,6 +9273,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 850849576701021034}
     - target: {fileID: 5112157524459710938, guid: f451a5818270c8046a89d14acf398c82, type: 3}
+      propertyPath: cc
+      value: 
+      objectReference: {fileID: 758332127443861789}
+    - target: {fileID: 5112157524459710938, guid: f451a5818270c8046a89d14acf398c82, type: 3}
       propertyPath: animator
       value: 
       objectReference: {fileID: 4503760445467288976}
@@ -9588,6 +9592,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8419117849841617270, guid: f451a5818270c8046a89d14acf398c82, type: 3}
       insertIndex: -1
       addedObject: {fileID: 850849576701021034}
+    - targetCorrespondingSourceObject: {fileID: 8419117849841617270, guid: f451a5818270c8046a89d14acf398c82, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 758332127443861789}
   m_SourcePrefab: {fileID: 100100000, guid: f451a5818270c8046a89d14acf398c82, type: 3}
 --- !u!4 &367805618819624107 stripped
 Transform:
@@ -9683,7 +9690,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8795442985178117392}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -9722,6 +9729,43 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.95, y: 1.9494505}
   m_EdgeRadius: 0
+--- !u!70 &758332127443861789
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8795442985178117392}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: -0.2596421}
+  m_Size: {x: 0.95, y: 1.94945}
+  m_Direction: 0
 --- !u!1001 &1167097604477110341
 PrefabInstance:
   m_ObjectHideFlags: 0
