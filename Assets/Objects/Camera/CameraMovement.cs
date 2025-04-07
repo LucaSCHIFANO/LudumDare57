@@ -104,6 +104,9 @@ public class CameraMovement : MonoBehaviour
 
     public Vector3 GetRestartPoint()
     {
-        return currentRoom.CheckPoint.position;
+        if (currentRoom.CheckPoint == null)
+            return Vector3.zero;
+        else
+            return currentRoom.CheckPoint.position;
     }
 }
