@@ -35,6 +35,9 @@ public class Room : MonoBehaviour
     [Header("ActiveItem")]
     [SerializeField] private List<GameObject> activeItemList = new List<GameObject>();
 
+    [Header("Door")]
+    [SerializeField] private List<Door> DoorList = new List<Door>();
+
     public Transform CheckPoint { get => checkPoint; }
 
     private void Awake()
@@ -116,6 +119,11 @@ public class Room : MonoBehaviour
         {
             obstacle.go.SetActive(true);
             obstacle.go.transform.position = obstacle.position;
+        }
+
+        foreach (var door in DoorList)
+        {
+            door.Restart();
         }
     }
 }
