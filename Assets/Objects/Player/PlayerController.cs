@@ -196,6 +196,7 @@ public class PlayerController : MonoBehaviour
 
         foreach (var bone in bones)
         {
+            bone.enabled = true;
             bone.TeleportToCheckpoint(checkpointPosition);
         }
     }

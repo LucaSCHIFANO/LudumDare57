@@ -13,7 +13,7 @@ public class ButtonDoor : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player" || collision.tag == "Bone")
+        if(collision.tag == "Player" || collision.tag == "Bone" || collision.tag == "Obstacle")
         {
             colliders.Add(collision);
             if(!isPressed)

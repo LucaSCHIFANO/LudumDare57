@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Bone
+  - Obstacle
   layers:
   - Default
   - TransparentFX

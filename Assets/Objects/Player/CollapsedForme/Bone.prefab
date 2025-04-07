@@ -103,6 +103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b3b488372d460544a2a96bd0d7e1803, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isHead: 0
+  rb: {fileID: 2355069714510446558}
   collapsedValues: {fileID: 11400000, guid: d562ec6430953e94cbf9882d9a6f4c7c, type: 2}
   ground:
     serializedVersion: 2
