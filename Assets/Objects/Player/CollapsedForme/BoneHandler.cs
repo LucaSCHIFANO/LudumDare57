@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class BoneHandler : MonoBehaviour
 {
+    private SpriteRenderer sr;
     [SerializeField] private bool isHead = false;
     [SerializeField] private Rigidbody2D rb;
     private float direction = 0f;
@@ -16,8 +17,14 @@ public class BoneHandler : MonoBehaviour
     private CollapsedManager collapsedManager;
     [SerializeField] private SOSound jumpSound;
 
+    public SpriteRenderer Sr { get => sr; }
+
     private void Start()
     {
+        sr = GetComponent<SpriteRenderer>();
+        if(sr == null)
+            sr = referenceTransform.GetComponent<SpriteRenderer>();
+
         if(rb == null)
             rb = GetComponent<Rigidbody2D>();
         collapsedManager = FindFirstObjectByType<CollapsedManager>();
