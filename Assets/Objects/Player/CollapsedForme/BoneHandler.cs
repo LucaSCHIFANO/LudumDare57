@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class BoneHandler : MonoBehaviour
 {
     [SerializeField] private bool isHead = false;
-    private Rigidbody2D rb;
+    [SerializeField] private Rigidbody2D rb;
     private float direction = 0f;
     [SerializeField] private CollapsedValuesScriptable collapsedValues;
     private float jumpTime = 0;
@@ -18,7 +18,8 @@ public class BoneHandler : MonoBehaviour
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        if(rb == null)
+            rb = GetComponent<Rigidbody2D>();
         collapsedManager = FindFirstObjectByType<CollapsedManager>();
         //ResetBone();
     }
