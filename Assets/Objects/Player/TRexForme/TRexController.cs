@@ -7,7 +7,7 @@ public class TRexController : MonoBehaviour
 {
     [Header("Components")]
     private Rigidbody2D rb;
-    [SerializeField] private BoxCollider2D bc;
+    [SerializeField] private CapsuleCollider2D cc;
     [SerializeField] GameObject rotatingPart;
     private PlayerController.State state = PlayerController.State.CanMove;
 
@@ -131,8 +131,8 @@ public class TRexController : MonoBehaviour
 
     private bool IsGrounded()
     {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(bc.bounds.center,
-            bc.bounds.size + new Vector3(Physics2D.defaultContactOffset, 0, 0), 0f,
+        RaycastHit2D raycastHit = Physics2D.BoxCast(cc.bounds.center,
+            cc.bounds.size + new Vector3(Physics2D.defaultContactOffset, 0, 0), 0f,
             Vector2.down, extraHeightBelow, ground);
 
         if (raycastHit.collider != null)
