@@ -114,15 +114,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void SetBonesActive(bool value)
+    private void SetBonesActive(bool value, bool isLeft)
     {
         foreach (var bone in bones)
         {
             if (bone.gameObject == headBone.gameObject)
                 continue;
             bone.gameObject.SetActive(value);
+            bone.Sr.flipX = isLeft;
         }
         headVisual.gameObject.SetActive(value);
+        headBone.Sr.flipX = isLeft;
 
     }
 
@@ -133,7 +135,7 @@ public class PlayerController : MonoBehaviour
         {
             bone.ResetBone();
         }
-        SetBonesActive(true);
+        SetBonesActive(true, TRex.RotatingPart.transform.localScale.x < 0);
         rb.constraints = RigidbodyConstraints2D.None;
         PlaySound(deconstructSound);
     }
@@ -163,7 +165,7 @@ public class PlayerController : MonoBehaviour
                 yield return new WaitForSeconds(.1f);
             }
                 yield return new WaitForSeconds(.5f);
-            SetBonesActive(false);
+            SetBonesActive(false, TRex.RotatingPart.transform.localScale.x < 0);
 
             SwitchToTRexForme.Invoke();
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;

@@ -45,6 +45,8 @@ public class TRexController : MonoBehaviour
     [Header("Visuals")]
     [SerializeField] private Animator animator;
 
+    public GameObject RotatingPart { get => rotatingPart; }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
