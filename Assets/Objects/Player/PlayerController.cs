@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     private State state = State.CanMove;
 
+    [SerializeField] private bool startAsTrex = true;
+
     public UnityEvent SwitchToTRexForme;
     public UnityEvent SwitchToCollapsedForme;
 
@@ -46,13 +48,20 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         bones = FindObjectsByType<BoneHandler>(FindObjectsSortMode.None);
-        foreach(var bone in bones)
+        if (startAsTrex)
         {
-            if (bone.gameObject == headBone.gameObject)
-                continue;
-            bone.gameObject.SetActive(false);
+            foreach (var bone in bones)
+            {
+                if (bone.gameObject == headBone.gameObject)
+                    continue;
+                bone.gameObject.SetActive(false);
+            }
+            headVisual.gameObject.SetActive(false);
         }
-        headVisual.gameObject.SetActive(false);
+        else
+        {
+            SwitchToCollapsedForme.Invoke();
+        }
     }
 
     public void ToRexFormeInput(InputAction.CallbackContext context)
@@ -165,6 +174,8 @@ public class PlayerController : MonoBehaviour
 
         foreach (var bone in bones)
         {
+            if (!bone.isActiveAndEnabled)
+                continue;
             bone.ChangeState(newState);
             bone.Move(dir);
         }
