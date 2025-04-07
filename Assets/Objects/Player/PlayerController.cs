@@ -103,7 +103,12 @@ public class PlayerController : MonoBehaviour
 
         if (context.performed)
         {
-            var checkpoint = CameraMovement.Instance.GetRestartPoint();
+            var checkpoint = CheckPointManager.Instance.GetRestartPoint();
+            if(checkpoint == Vector3.zero)
+            {
+                Debug.Log("No checkpoint set");
+                return;
+            }
             CameraMovement.Instance.Restart();
             ResetToCheckpoint(checkpoint);
         }

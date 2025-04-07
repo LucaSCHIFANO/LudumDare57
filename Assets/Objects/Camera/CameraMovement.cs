@@ -75,6 +75,13 @@ public class CameraMovement : MonoBehaviour
         StartCoroutine(WaitToActivateRoom(transition.direction));
     }
 
+    public void InstanteCamTransition(Room room)
+    {
+        currentRoom.ActiveRoom(false);
+        currentRoom = room;
+        currentRoom.ActiveRoom(true);
+    }
+
     public IEnumerator WaitToActivateRoom(Transition.Direction dir)
     {
         target.ChangeState(PlayerController.State.CannotMove, dir);
