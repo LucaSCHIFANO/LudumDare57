@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Music
   m_EditorClassIdentifier: 
   sounds:
-  - clip: {fileID: 8300000, guid: d7e0a46564819de4d92a031a74fbc05f, type: 3}
+  - clip: {fileID: 8300000, guid: 5e5b6f31de408bd43b2b593a153e66d5, type: 3}
     weight: 1
   soundType: 0
   isVolumeRandom: 0
