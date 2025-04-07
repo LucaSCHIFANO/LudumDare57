@@ -9,11 +9,13 @@ public class Door : MonoBehaviour
     bool isClosed = true;
     [SerializeField] private DoorType doorType = DoorType.AllButton;
     [SerializeField, ShowIf("doorType", DoorType.MinimumButton), Min(1)] private int minimumButton;
+    [SerializeField] private bool stayOpen = false;
 
     public enum DoorType
     {
         AllButton,
         MinimumButton,
+
     }
 
     [SerializeField] private GameObject doorCollider;
@@ -59,6 +61,7 @@ public class Door : MonoBehaviour
 
     private void Open(bool open)
     {
+        if (stayOpen && !open) return;
         isClosed = !open;
         doorCollider.SetActive(!open);
     }
