@@ -19,7 +19,7 @@ public class BoneHandler : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         collapsedManager = FindFirstObjectByType<CollapsedManager>();
-        ResetBone();
+        //ResetBone();
     }
 
     public void PlaySound(SOSound sound)
