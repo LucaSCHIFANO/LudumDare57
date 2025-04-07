@@ -1,6 +1,7 @@
 using NaughtyAttributes;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Door : MonoBehaviour
 {
@@ -64,6 +65,12 @@ public class Door : MonoBehaviour
         if (stayOpen && !open) return;
         isClosed = !open;
         doorCollider.SetActive(!open);
+    }
+
+    public void Restart()
+    {
+        isClosed = true;
+        doorCollider.SetActive(true);
     }
 
 }
