@@ -1835,11 +1835,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2265544727262218352, guid: 7ef939bf84236e542ac4efdb9deb36f8, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3.6587543
+      value: 2.6580849
       objectReference: {fileID: 0}
     - target: {fileID: 2265544727262218352, guid: 7ef939bf84236e542ac4efdb9deb36f8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 50.31729
+      value: 50.8177
       objectReference: {fileID: 0}
     - target: {fileID: 2265544727262218352, guid: 7ef939bf84236e542ac4efdb9deb36f8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -124487,14 +124487,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 66286992}
     m_Modifications:
-    - target: {fileID: 1448908254216215296, guid: e5ae4fadfd722e84ba6ab9ceb1174193, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 20.58
-      objectReference: {fileID: 0}
-    - target: {fileID: 1448908254216215296, guid: e5ae4fadfd722e84ba6ab9ceb1174193, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -10.17
-      objectReference: {fileID: 0}
     - target: {fileID: 1907824496601677041, guid: e5ae4fadfd722e84ba6ab9ceb1174193, type: 3}
       propertyPath: doorType
       value: 0
@@ -125546,6 +125538,10 @@ PrefabInstance:
     - target: {fileID: 4982083496530737220, guid: 7d1f3d62ae35dba43a5b45272a8f996b, type: 3}
       propertyPath: m_LocalPosition.y
       value: -2.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 5896983283519449983, guid: 7d1f3d62ae35dba43a5b45272a8f996b, type: 3}
+      propertyPath: checkPoint
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5896983283519449983, guid: 7d1f3d62ae35dba43a5b45272a8f996b, type: 3}
       propertyPath: transition.nextRoom

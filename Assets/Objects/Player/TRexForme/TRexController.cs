@@ -129,6 +129,7 @@ public class TRexController : MonoBehaviour
                 obj.collider.GetComponent<IDestroyable>().TakeDamage(attackDamage);
         }
         PlaySound(attackSound);
+        animator.SetTrigger("Attack");
     }
 
     private bool IsGrounded()
