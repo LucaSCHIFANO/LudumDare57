@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private TRexController tRex;
     [SerializeField] private BoneHandler headBone;
     [SerializeField] private Transform headVisual;
+    [SerializeField] private Transform rotatingPart;
     [SerializeField] private float playerHeight = 1;
     [SerializeField] LayerMask ground;
     Rigidbody2D rb;
@@ -171,6 +172,7 @@ public class PlayerController : MonoBehaviour
             SwitchToTRexForme.Invoke();
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             headBone.SimulateRigidbody(true);
+            rotatingPart.eulerAngles = Vector3.zero;
         }
     }
     public void ChangeState(State newState, Transition.Direction dir)
