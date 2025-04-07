@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef574d886f968e642b4c4f188e6a320c, type: 3}
   m_Name: CollapsedValuesScriptable
   m_EditorClassIdentifier: 
-  strength: 8
+  strength: 6
   transitionStrength: 8
-  jumpStrength: 8
-  torqueStrength: 0.2
-  jumpCooldown: 1.5
+  jumpStrength: 7
+  torqueStrength: 0.3
+  jumpCooldown: 1
   attractionMultiplier: 1.5
+  impuleStrength: 0.1

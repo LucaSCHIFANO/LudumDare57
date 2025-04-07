@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class BoneHandler : MonoBehaviour
 {
+    [SerializeField] private bool isHead = false;
     private Rigidbody2D rb;
     private float direction = 0f;
     [SerializeField] private CollapsedValuesScriptable collapsedValues;
@@ -35,20 +36,24 @@ public class BoneHandler : MonoBehaviour
             rb.AddForceX(direction * collapsedValues.transitionStrength);
             rb.AddTorque(direction * collapsedValues.torqueStrength * -1);
         }
-        else if (Mathf.Abs(direction) > .2f){
+        else if (Mathf.Abs(direction) > .2f)
+        {
             rb.AddForceX(direction * collapsedValues.strength);
             rb.AddTorque(direction * collapsedValues.torqueStrength * -1);
-            Vector3 attraction = collapsedManager.transform.position - transform.position;
+            Vector3 attraction = (collapsedManager.transform.position - transform.position).normalized;
             rb.AddForce(attraction * collapsedValues.attractionMultiplier);
-            Debug.DrawLine(transform.position, transform.position + attraction);
+            if (IsGrounded(.5f))
+            {
+                rb.AddForceY(collapsedValues.impuleStrength, ForceMode2D.Impulse);
+            }
         }
     }
 
-    private bool IsGrounded()
+    private bool IsGrounded(float height)
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(transform.position,
-            new Vector3(2, 1, 0), 0f,
-            Vector2.down, 2, ground);
+            new Vector3(1, height, 0), 0f,
+            Vector2.down, 0, ground);
 
         if (raycastHit.collider != null)
         {
@@ -67,7 +72,7 @@ public class BoneHandler : MonoBehaviour
     public void JumpInput(InputAction.CallbackContext context)
     {
         if (state != PlayerController.State.CanMove) return;
-        if (context.performed && this.isActiveAndEnabled && (Time.fixedTime - jumpTime) >= collapsedValues.jumpCooldown && IsGrounded())
+        if (context.performed && this.isActiveAndEnabled && (Time.fixedTime - jumpTime) >= collapsedValues.jumpCooldown && IsGrounded(2))
         {
             rb.AddForceY(collapsedValues.jumpStrength, ForceMode2D.Impulse);
             jumpTime = Time.fixedTime;
@@ -101,8 +106,6 @@ public class BoneHandler : MonoBehaviour
 
     public void Move(Transition.Direction dir)
     {
-
-        Debug.Log(this.name);
         switch (dir)
         {
             case Transition.Direction.Left:
