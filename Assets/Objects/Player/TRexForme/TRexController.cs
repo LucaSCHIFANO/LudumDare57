@@ -131,8 +131,7 @@ public class TRexController : MonoBehaviour
 
     private bool IsGrounded()
     {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(cc.bounds.center,
-            cc.bounds.size + new Vector3(Physics2D.defaultContactOffset, 0, 0), 0f,
+        RaycastHit2D raycastHit = Physics2D.BoxCast(cc.bounds.center, new Vector2(cc.bounds.size.x /2, cc.bounds.size.y) /*+ new Vector3(Physics2D.defaultContactOffset, 0, 0)*/, 0f,
             Vector2.down, extraHeightBelow, ground);
 
         if (raycastHit.collider != null)
