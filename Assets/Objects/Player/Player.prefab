@@ -661,7 +661,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 4
+  m_Radius: 4.33
 --- !u!1 &2729825353861098259
 GameObject:
   m_ObjectHideFlags: 0
@@ -2467,7 +2467,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1.6355952
+      value: 1.88
       mode: 0
       spread: 0
       speed:
@@ -9506,6 +9506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isHead: 0
+  rb: {fileID: 0}
   collapsedValues: {fileID: 11400000, guid: d562ec6430953e94cbf9882d9a6f4c7c, type: 2}
   ground:
     serializedVersion: 2
