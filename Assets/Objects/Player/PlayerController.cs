@@ -174,6 +174,8 @@ public class PlayerController : MonoBehaviour
 
         foreach (var bone in bones)
         {
+            if (!bone.isActiveAndEnabled)
+                continue;
             bone.ChangeState(newState);
             bone.Move(dir);
         }

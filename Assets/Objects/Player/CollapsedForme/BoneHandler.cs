@@ -101,6 +101,8 @@ public class BoneHandler : MonoBehaviour
 
     public void Move(Transition.Direction dir)
     {
+
+        Debug.Log(this.name);
         switch (dir)
         {
             case Transition.Direction.Left:
