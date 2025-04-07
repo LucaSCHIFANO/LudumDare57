@@ -123,6 +123,7 @@ public class PlayerController : MonoBehaviour
             bone.gameObject.SetActive(value);
             bone.Sr.flipX = isLeft;
         }
+
         headVisual.gameObject.SetActive(value);
         headBone.Sr.flipX = isLeft;
 

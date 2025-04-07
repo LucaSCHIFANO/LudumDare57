@@ -1,5 +1,3 @@
-using UnityEditor.AssetImporters;
-using UnityEditorInternal;
 using UnityEngine;
 
 public class ColliderTransition : MonoBehaviour

@@ -16,14 +16,8 @@ public class MainMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        if(Application.isEditor)
-        {
-            UnityEditor.EditorApplication.isPlaying = false;
-        }
-        else
-        {
             Application.Quit();
-        }
+        
     }
 
     public void MuteMusic()

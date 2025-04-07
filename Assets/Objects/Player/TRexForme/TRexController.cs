@@ -1,5 +1,3 @@
-using System;
-using UnityEditor.Toolbars;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
